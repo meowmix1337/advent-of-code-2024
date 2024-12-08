@@ -1,12 +1,16 @@
 # Acuity Go Advent of Code
 
 ## How to Run
-```
-go run main.go --day=X
+Run the following make command:
+1. `make run ${DAY}` where ${DAY} is just the day number. i.e. 1, 2, 3, 4, 10, 12, etc
+   1. i.e. `make run 3` will run day 3 of advent
 
-example:
-go run main.go --day=1
-```
+## Create a new day
+Run the following command to create a new day solver:
+1. `make new-day ${DAY}` where ${DAY} is just the day number. i.e. 1, 2, 3, 4, 10, 12, etc
+   1. i.e. `make new-day 3` will generate `day03` under `./solutions`
+2. Update `./solutions/day_factory/day_factory.go` to include the new day solver you created.
+3. Start solving!
 
 ## Structure
 * **cmd**
