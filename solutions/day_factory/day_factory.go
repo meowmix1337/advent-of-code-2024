@@ -8,6 +8,7 @@ import (
 	"github.com/dvan-sqsp/advent-of-code-2024/solutions/day04"
 	"github.com/dvan-sqsp/advent-of-code-2024/solutions/day05"
 	"github.com/dvan-sqsp/advent-of-code-2024/solutions/day06"
+	"github.com/dvan-sqsp/advent-of-code-2024/solutions/day07"
 	"github.com/rs/zerolog/log"
 )
 
@@ -26,6 +27,8 @@ func GetDay(day int) solver.Solver {
 		return day05.New()
 	case 6:
 		return day06.New()
+	case 7:
+		return day07.New()
 	default:
 		log.Error().Msg("Invalid Day Number")
 		return nil
