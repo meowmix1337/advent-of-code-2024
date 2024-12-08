@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/dvan-sqsp/advent-of-code-2024/internal/solver"
+	"github.com/dvan-sqsp/advent-of-code-2024/util"
 )
 
 type Day04 struct {
@@ -38,7 +39,7 @@ const (
 
 func (d *Day04) Part1(lines []string) string {
 	total := 0
-	wordSearch := d.buildWordSearch(lines)
+	wordSearch := util.Build2DMap(lines)
 	for y, row := range wordSearch {
 		for x, letter := range row {
 			// only care about X
@@ -53,7 +54,7 @@ func (d *Day04) Part1(lines []string) string {
 
 func (d *Day04) Part2(lines []string) string {
 	total := 0
-	wordSearch := d.buildWordSearch(lines)
+	wordSearch := util.Build2DMap(lines)
 	for y, row := range wordSearch {
 		for x, letter := range row {
 			// only care about A
@@ -76,7 +77,7 @@ func (d *Day04) countXMAS(wordSearch [][]string, y, x int) int {
 		dx, dy := x, y
 		for word != xmas && len(word) < 4 {
 			dx, dy = dx+direction.dx, dy+direction.dy
-			if !isInBounds(wordSearch, dx, dy) {
+			if !util.IsInBounds(wordSearch, dx, dy) {
 				break
 			}
 			nextLetter := wordSearch[dy][dx]
@@ -91,27 +92,11 @@ func (d *Day04) countXMAS(wordSearch [][]string, y, x int) int {
 	return count
 }
 
-// isInBounds checks if the point (x, y) is within the bounds of the matrix
-func isInBounds(wordSearch [][]string, x, y int) bool {
-	return x >= 0 && y >= 0 && x < len(wordSearch) && y < len(wordSearch[0])
-}
-
-func (d *Day04) buildWordSearch(input []string) [][]string {
-	wordSearch := make([][]string, len(input))
-	for i, line := range input {
-		wordSearch[i] = make([]string, len(line))
-		for j, letter := range strings.Split(line, "") {
-			wordSearch[i][j] = letter
-		}
-	}
-	return wordSearch
-}
-
 // only check diagonals because who cares about the other directions
 func (d *Day04) isValidMASOrSAM(wordSearch [][]string, dx1, dy1, dx2, dy2 int) bool {
 	word := "*A*"
 
-	if !isInBounds(wordSearch, dx1, dy1) || !isInBounds(wordSearch, dx2, dy2) {
+	if !util.IsInBounds(wordSearch, dx1, dy1) || !util.IsInBounds(wordSearch, dx2, dy2) {
 		return false
 	}
 
