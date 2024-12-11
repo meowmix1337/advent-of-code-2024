@@ -20,7 +20,7 @@ func ReadInts(line string, sep string) ([]int, error) {
 }
 
 // IsInBounds checks if the point (x, y) is within the bounds of the matrix
-func IsInBounds[T int | string](twoDSlice [][]T, x, y int) bool {
+func IsInBounds[T any](twoDSlice [][]T, x, y int) bool {
 	return x >= 0 && y >= 0 && x < len(twoDSlice) && y < len(twoDSlice[0])
 }
 
